@@ -21,45 +21,62 @@ const config = {
 };
 
 //* ROTA DE LOGIN *\\
-app.post('/login', async (req, res) => {
-  const { usuario, senha } = req.body;
+app.post('/api/login', async (req, res) => {
+  const { login, senha } = req.body;
 
   try {
     const pool = await sql.connect(config);
-    const result = await pool.request()
-      .input('usuario', sql.VarChar, usuario)
-      .input('senha', sql.VarChar, senha)
-      .query('SELECT * FROM usuarios WHERE usuario = @usuario AND senha = @senha');
 
-    if (result.recordset.length > 0) {
-      res.json({ sucesso: true, mensagem: 'Login bem-sucedido!' });
-    } else {
-      res.status(401).json({ sucesso: false, mensagem: 'Usuário ou senha inválidos.' });
+    const result = await pool.request()
+      .input('login', sql.VarChar, login)
+      .input('senha', sql.VarChar, senha)
+      .query(`
+        SELECT * FROM usuarios 
+        WHERE (usuario = @login OR email = @login) AND senha = @senha
+      `);
+
+    if (result.recordset.length === 0) {
+      return res.status(401).json({ erro: 'Usuário ou senha inválidos.' });
     }
+
+    res.status(200).json({ mensagem: 'Login bem-sucedido!' });
   } catch (err) {
-    console.error('Erro na conexão:', err);
-    res.status(500).json({ erro: 'Erro no servidor' });
+    console.error('Erro no login:', err);
+    res.status(500).json({ erro: 'Erro no servidor durante o login.' });
   }
 });
 
+
 //* ROTA DE CADASTRO *\\
 app.post('/api/cadastrar', async (req, res) => {
-  const { usuario, senha } = req.body;
+  const { nome, usuario, email, senha, telefone, dataNascimento } = req.body;
 
+  console.log('Dados recebidos:', { nome, usuario, email, senha, telefone, dataNascimento });
   try {
     const pool = await sql.connect(config);
+
+    // Verificar se o usuário ou email já está cadastrado
     const check = await pool.request()
       .input('usuario', sql.VarChar, usuario)
-      .query('SELECT * FROM usuarios WHERE usuario = @usuario');
+      .input('email', sql.VarChar, email)
+      .query('SELECT * FROM usuarios WHERE usuario = @usuario OR email = @email');
 
     if (check.recordset.length > 0) {
-      return res.status(400).json({ erro: 'Usuário já cadastrado.' });
+      return res.status(400).json({ erro: 'Usuário ou email já cadastrado.' });
     }
 
+    // Inserir novo usuário no banco
     await pool.request()
+      .input('nome', sql.VarChar, nome)
       .input('usuario', sql.VarChar, usuario)
+      .input('email', sql.VarChar, email)
       .input('senha', sql.VarChar, senha)
-      .query('INSERT INTO usuarios (usuario, senha) VALUES (@usuario, @senha)');
+      .input('telefone', sql.VarChar, telefone)
+      .input('dataNascimento', sql.Date, dataNascimento)
+      .query(`
+        INSERT INTO usuarios (nome, usuario, email, senha, telefone, data_nascimento)
+        VALUES (@nome, @usuario, @email, @senha, @telefone, @dataNascimento)
+      `);
 
     res.status(201).json({ mensagem: 'Usuário cadastrado com sucesso!' });
   } catch (err) {
@@ -67,6 +84,8 @@ app.post('/api/cadastrar', async (req, res) => {
     res.status(500).json({ erro: 'Erro no servidor ao cadastrar.' });
   }
 });
+
+
 
 //* RECEBER DADOS DOS SENSORES *\\
 app.post('/api/sensores', async (req, res) => {
@@ -147,3 +166,14 @@ app.get('/api/blog-receitas', async (req, res) => {
 app.listen(3000, () => {
   console.log('✅ API rodando em http://localhost:3000');
 });
+async function testConnection() {
+  try {
+    const pool = await sql.connect(config);
+    console.log("Conexão bem-sucedida!");
+    pool.close();
+  } catch (err) {
+    console.error("Erro ao conectar ao banco de dados:", err);
+  }
+}
+
+testConnection();

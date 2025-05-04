@@ -71,7 +71,7 @@ nav ul li:hover a {
     display: none; /* Inicialmente oculta */
     border: 2px solid #ccc;
     border-radius: 20px; /* Bordas arredondadas */
-    width: 400px; /* Tamanho da barra de pesquisa */
+    width: 200px; /* Tamanho da barra de pesquisa */
     background-color: rgba(243, 154, 209, 0.637);
 }
 

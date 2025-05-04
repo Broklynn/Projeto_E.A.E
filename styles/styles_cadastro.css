@@ -48,37 +48,18 @@ nav ul li a {
     font-weight: bold;
     transition: border 0.3s ease;
 }
-.submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: linear-gradient(to right, #4caf50, #FFDE59);
-    border-radius: 10px;
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    z-index: 1001;
-}
-.submenu a {
-    color: white;
-    padding: 5px 10px;
-    text-decoration: none;
-    display: block;
-}
-nav ul li:hover .submenu {
-    display: flex;
-}
-.icones a {
-    margin-left: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    text-decoration: none;
+nav ul li:hover a {
+    font-weight: 799;
+    color: #1c8612; /* Cor ao passar o mouse */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    opacity: 100%;
 }
 .pesquisa {
     position: relative;
     text-decoration: none;
     font-size: 24px;
 }
+
 .barra-pesquisa {
     position: absolute;
     top: 50%;
@@ -89,14 +70,21 @@ nav ul li:hover .submenu {
     display: none;
     border: 2px solid #ccc;
     border-radius: 20px;
-    width: 200px;
-    background-color: white;
+    width: 300px;
+    background-color: rgba(243, 154, 209, 0.637);
 }
+
 .pesquisa:hover .barra-pesquisa {
     display: block;
 }
 
-/* Container do Login */
+
+.icones a {
+    margin-left: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+/* Formulário de Cadastro */
 .login-container {
     display: flex;
     justify-content: center;
@@ -109,7 +97,7 @@ nav ul li:hover .submenu {
     width: 100%;
     max-width: 400px;
     padding: 40px;
-    border-radius: 50px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -133,7 +121,7 @@ nav ul li:hover .submenu {
     box-sizing: border-box;
 }
 
-/* Botão de Login */
+/* Botão de Cadastro */
 .login-button {
     width: 100%;
     padding: 15px;
@@ -166,16 +154,19 @@ nav ul li:hover .submenu {
     text-decoration: underline;
 }
 
-/* Estilo do rodapé */
-footer {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
+/* Termos de uso */
+label {
     font-size: 14px;
     color: #606770;
 }
 
-footer p {
-    margin: 0;
+label a {
+    color:  black;
+    text-decoration: none;
 }
+
+label input {
+    margin-right: 10px;
+}
+
+

@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: white;
+    background:  #C1F0C5;
     color: #333;
 }
 
@@ -37,7 +37,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: rgb(8, 122, 0);
+    color: black;
     font-weight:575;
     
 }
@@ -48,30 +48,6 @@ nav ul li:hover a {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra leve */
     opacity: 100%;
 }
-
-.submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: linear-gradient(to right, #4caf50, #FFDE59);
-    border-radius: 10px;
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    z-index: 1001;
-}
-
-.submenu a {
-    color: black;
-    padding: 5px 10px;
-    text-decoration: none;
-    display: block;
-}
-
-nav ul li:hover .submenu {
-    display: flex;
-}
-
 .icones a {
     margin-left: 10px;
     font-size: 30px;
@@ -96,8 +72,8 @@ nav ul li:hover .submenu {
     display: none; /* Inicialmente oculta */
     border: 2px solid #ccc;
     border-radius: 20px; /* Bordas arredondadas */
-    width: 400px; /* Tamanho da barra de pesquisa */
-    background-color: rgba(243, 154, 209, 0.637);
+    width: 200px; /* Tamanho da barra de pesquisa */
+    background-color: white;
 }
 
 /* Quando o mouse passa sobre o ícone de pesquisa, exibe a barra de pesquisa */

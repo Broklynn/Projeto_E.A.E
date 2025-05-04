@@ -1,30 +1,31 @@
-async function fazerLogin() {
-  const usuario = document.getElementById('username').value;
-  const senha = document.getElementById('password').value;
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const login = document.getElementById('username').value;
+  const senha = document.getElementById('senha').value;
 
   try {
-    const response = await fetch('http://localhost:3000/login', { 
+    const response = await fetch('http://localhost:3000/api/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ usuario, senha })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ login, senha })
     });
 
-    const data = await response.json();
+    const resultado = await response.json();
 
-    if (response.ok && data.sucesso) {
-      localStorage.setItem('usuarioLogado', 'true'); 
-      window.location.href = '/html/dashboard.html'; 
+    if (response.ok) {
+      alert('Login realizado com sucesso!');
+      // Redirecionar para a página do usuário ou dashboard, por exemplo:
+      window.location.href = '/html/dashboard.html';
     } else {
-      document.getElementById('mensagem').textContent = data.mensagem || 'Erro no login';
+      alert(resultado.erro || 'Credenciais inválidas');
     }
-
-  } catch (error) {
-    console.error('Erro ao tentar logar:', error);
-    document.getElementById('mensagem').textContent = 'Erro de conexão com o servidor';
+  } catch (err) {
+    console.error(err);
+    alert('Erro ao conectar com o servidor.');
   }
-}
+});
+
 
 function logout() {
   localStorage.removeItem('usuarioLogado');
