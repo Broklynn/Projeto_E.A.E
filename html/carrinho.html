@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <link rel="stylesheet" href="/styles/styles_carrinho.css">
+    <script src="/script/verifica_login.js"></script>
+    <script>
+      if (!localStorage.getItem('usuarioLogado')) {
+        window.location.href = '/usuario.html';
+      }
+    </script>
+    
+
+</head>
+<body>
+  <header>
+    <div class="logo" href="index.html">E.A.E</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre a empresa</a></li>
+            <li><a href="informacoes.html">Informações</a></li>
+            <li><a href="blog_Base.html">Blog</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+
+        </ul>
+    </nav>
+    <div class="icones">
+        <a class="pesquisa" href="javascript:void(0);" onclick="toggleSearchBar()">
+            🔍
+            <input type="text" class="barra-pesquisa" placeholder="Pesquisar...">
+        </a>
+        <a class="carrinho" href="carrinho.html">🛒</a>
+        <a class="usuario" href="usuario.html">👤</a>
+    </div>
+  </nav>
+
+</header>
+    <h1>🛒 Carrinho de Compras</h1>
+
+  <div class="carrinho-container">
+    <table id="tabelaCarrinho">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Total</th>
+          <th>Remover</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Produtos  -->
+      </tbody>
+    </table>
+    <div class="total-final">
+      <h3>Total: R$ <span id="valorTotal">0,00</span></h3>
+      <button class="btn-finalizar">Finalizar Compra</button>
+    </div>
+  </div>
+    <script src="/script/carrinho.js"></script>
+    <script src="/script/barra_pesquisa.js"></script>
+</body>
+</html>

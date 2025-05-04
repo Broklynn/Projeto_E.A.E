@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - E.A.E</title>
+    <link rel="stylesheet" href="/styles/styles_produtos.css">
+</head>
+<body>
+    <header>
+        <a class="logo" href="index.html">E.A.E</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre a empresa</a></li>
+                <li><a href="informacoes.html">Informações</a></li>
+                <li><a href="blog_Base.html">Blog</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+
+            </ul>
+        </nav>
+        <div class="icones">
+            <a class="pesquisa" href="javascript:void(0);" onclick="toggleSearchBar()">
+                🔍
+                <input type="text" class="barra-pesquisa" placeholder="Pesquisar...">
+            </a>
+            <a class="carrinho" href="carrinho.html">🛒</a>
+            <a class="usuario" href="usuario.html">👤</a>
+        </div>
+      </nav>
+    
+</header>
+    
+    <section class="hero">
+        <div class="texto">
+            <h1>BYOND VITREO</h1>
+            <p>Transforme seu espaço em um jardim inteligente: cultive saúde, frescor e sustentabilidade com a Estufa Automatizada E.A.E!</p>
+        </div>
+        <div class="botoes">
+            <a href="informacoes.html">
+            <button class="saiba-mais">Saiba mais!</button>
+            </a>
+            <button class="comprar" onclick="adicionarAoCarrinho('Estufa Automatizada E.A.E', 499.90)">Adicionar ao carrinho</button>
+
+        </div>
+    </section>
+    
+    <section class="recursos">
+        <div class="box">
+            <h3>Controle Online Fácil</h3>
+            <p>Conecte sua estufa ao site da EAE e gerencie seu cultivo pelo painel intuitivo.</p>
+        </div>
+        <div class="box">
+            <h3>Monitoramento em Tempo Real</h3>
+            <p>Acompanhe dados como temperatura e umidade pelo seu dispositivo, onde quer que você esteja.</p>
+        </div>
+        <div class="box">
+            <h3>Personalização</h3>
+            <p>Configure condições ideais para diferentes tipos de plantas, como hortaliças, flores ou temperos, e deixe a estufa ajustar automaticamente os parâmetros.</p>
+        </div>
+        <div class="box">
+            <h3>Notificações e Alertas</h3>
+            <p>Receba lembretes sobre rega, adubação e outros cuidados importantes para garantir o melhor cultivo.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="sobre">
+                <h3>Sobre a E.A.E</h3>
+                <p>Unimos tecnologia e sustentabilidade para criar soluções inteligentes para o cultivo urbano.</p>
+            </div>
+            <div class="links">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre.html">Sobre a empresa</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="informacoes.html">Informações</a></li>
+                </ul>
+            </div>
+            <div class="contato">
+                <h3>Contato</h3>
+                <p>Email: contato@eae.com</p>
+                <p>Telefone: (11) 99999-9999</p>
+                <div class="redes-sociais">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 E.A.E - Estufas Automatizadas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="/script/barra_pesquisa.js"></script>
+    <script src="/script/produtos.js"></script>
+
+</body>
+</html>

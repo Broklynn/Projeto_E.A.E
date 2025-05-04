@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/styles_usuario.css">
+</head>
+<body>
+    <header>
+        <div class="logo" href="index.html">E.A.E</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre a empresa</a></li>
+                <li><a href="informacoes.html">Informações</a></li>
+                <li>
+                    <a href="#">Blog ▼</a>
+                    <div class="submenu">
+                        <a href="blog_plantio.html">Blog de plantio</a>
+                        <a href="blog_estufa.html">Blog da estufa</a>
+                        <a href="blog_receitas.html">Blog de receitas</a>
+                    </div>
+                </li>
+                <li><a href="produtos.html">Produtos</a></li>
+            </ul>
+        </nav>
+        <div class="icones">
+            <a class="pesquisa" href="javascript:void(0);" onclick="toggleSearchBar()">
+                🔍
+                <input type="text" class="barra-pesquisa" placeholder="Pesquisar...">
+        </a>
+            <a class="carrinho" href="carrinho.html">🛒</a>
+            <a class="usuario" href="usuario.html">👤</a>
+        </div>
+
+    </header>
+
+    <div class="login-container">
+        <h2>Login </h2>
+        <input type="text" class="input-box" placeholder="Usuário" id="username">
+        <input type="password" class="input-box" placeholder="Senha" id="password">
+        <button class="login-button" onclick="fazerLogin()">Entrar</button>
+        <button class="btn-cadastrar" onclick="window.location.href='cadastro.html'">Cadastrar</button>
+        <p id="mensagem" style="color: red; font-weight: bold;"></p>
+
+    </div>
+    <script src="/script/barra_pesquisa.js"></script>
+    <script src="/script/login.js"></script>
+</body>
+</html>

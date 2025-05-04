@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #4caf50, #FFDE59);
+    color: #333;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1000;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+nav ul li:hover {
+    background-color: #6bb2ec;
+    /*border: 2px solid #2196f3; */
+    border-radius: 10px;
+    opacity: 90%;
+}
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: border 0.3s ease;
+    
+}
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(to right, #4caf50, #FFDE59);
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    z-index: 1001;
+}
+.submenu a {
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: block;
+}
+nav ul li:hover .submenu {
+    display: flex;
+}
+.icones a {
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.pesquisa {
+    position: relative; /* Necessário para o posicionamento do input */
+    text-decoration: none;
+    font-size: 24px;
+}
+
+/* Estilo da barra de pesquisa (input) */
+.barra-pesquisa {
+    position: absolute;
+    top: 50%; /* Alinha verticalmente com o ícone */
+    right: 100%; /* Posiciona a barra de pesquisa ao lado esquerdo do ícone */
+    transform: translateY(-50%); /* Centraliza verticalmente o input */
+    padding: 5px 10px;
+    font-size: 16px;
+    display: none; /* Inicialmente oculta */
+    border: 2px solid #ccc;
+    border-radius: 20px; /* Bordas arredondadas */
+    width: 400px; /* Tamanho da barra de pesquisa */
+    background-color: rgba(243, 154, 209, 0.637);
+}
+
+/* Quando o mouse passa sobre o ícone de pesquisa, exibe a barra de pesquisa */
+.pesquisa:hover .barra-pesquisa {
+    display: block;
+}
+.login-container {
+    background: linear-gradient(to right, #4caf50, #FFDE59);
+    padding: 40px;
+    border-radius: 40px; /* Bordas arredondadas do quadrado */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Tamanho maior do quadrado */
+    text-align: center;
+    
+    /* Centraliza o container horizontal e verticalmente */
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Estilo do título */
+.login-container h2 {
+    margin-bottom: 40px;
+    font-size: 40px;
+    color: #333;
+}
+
+/* Estilo dos campos de texto */
+.input-box {
+    width: 96%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid linear-gradient(to right, #4caf50, #FFDE59);
+    border-radius: 20px; /* Bordas arredondadas para os campos */
+    font-size: 28px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Efeito ao focar nos campos */
+.input-box:focus {
+    border-color: #007bff;
+    outline: none;
+    
+}
+
+/* Estilo do botão */
+.login-button {
+    width: 50%;
+    padding: 15px;
+    background: linear-gradient(to right, #FFDE59, #4caf50);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+/* Efeito ao passar o mouse no botão */
+.login-button:hover {
+    background-color: #0056b3;
+}
+.btn-cadastrar {
+    margin: 10px;
+    width: 50%;
+    padding: 15px;
+    background: linear-gradient(to right, #FFDE59, #4caf50);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    box-sizing: border-box;
+  }
+  
+  .btn-cadastrar:hover {
+    background-color: #0056b3;
+  }

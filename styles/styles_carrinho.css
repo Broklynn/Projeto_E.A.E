@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right,  #EBA34D, #EB6C4D);
+    color: #333;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1000;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+nav ul li:hover {
+    background-color: #6bb2ec;
+    /*border: 2px solid #2196f3; */
+    border-radius: 10px;
+    opacity: 90%;
+}
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: border 0.3s ease;
+    
+}
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(to right, #2196f3, #FFDE59);
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    z-index: 1001;
+}
+.submenu a {
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: block;
+}
+nav ul li:hover .submenu {
+    display: flex;
+}
+.icones a {
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.pesquisa {
+    position: relative; /* Necessário para o posicionamento do input */
+    text-decoration: none;
+    font-size: 24px;
+}
+
+/* Estilo da barra de pesquisa (input) */
+.barra-pesquisa {
+    position: absolute;
+    top: 50%; /* Alinha verticalmente com o ícone */
+    right: 100%; /* Posiciona a barra de pesquisa ao lado esquerdo do ícone */
+    transform: translateY(-50%); /* Centraliza verticalmente o input */
+    padding: 5px 10px;
+    font-size: 16px;
+    display: none; /* Inicialmente oculta */
+    border: 2px solid #ccc;
+    border-radius: 20px; /* Bordas arredondadas */
+    width: 400px; /* Tamanho da barra de pesquisa */
+    background-color: rgba(243, 154, 209, 0.637);
+}
+
+/* Quando o mouse passa sobre o ícone de pesquisa, exibe a barra de pesquisa */
+.pesquisa:hover .barra-pesquisa {
+    display: block;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 40px 0;
+}
+.box {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+h1, h2 {
+    color: #333;
+}
+.carrinho-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  thead {
+    background-color: #f0f0f0;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .btn-remover {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-finalizar {
+    padding: 12px 20px;
+    background: linear-gradient(to right, #FFDE59, #4caf50);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .total-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }

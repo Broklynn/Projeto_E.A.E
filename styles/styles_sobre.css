@@ -1,0 +1,270 @@
+/* ======== ESTILO GERAL ======== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #EBDD46, #EB7F3F);
+    color: #333;
+}
+
+/* ======== CABEÇALHO ======== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li:hover {
+    background-color: #6bb2ec;
+    /*border: 2px solid #2196f3; */
+    border-radius: 10px;
+    opacity: 90%;
+}
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: border 0.3s ease;
+    
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(to left, #EBDD46, #EB7F3F);
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.submenu a {
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+nav ul li:hover .submenu {
+    display: flex;
+}
+
+/* ÍCONES */
+.icones a {
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+.pesquisa {
+    position: relative; /* Necessário para o posicionamento do input */
+    text-decoration: none;
+    font-size: 24px;
+}
+
+/* Estilo da barra de pesquisa (input) */
+.barra-pesquisa {
+    position: absolute;
+    top: 50%; /* Alinha verticalmente com o ícone */
+    right: 100%; /* Posiciona a barra de pesquisa ao lado esquerdo do ícone */
+    transform: translateY(-50%); /* Centraliza verticalmente o input */
+    padding: 5px 10px;
+    font-size: 16px;
+    display: none; /* Inicialmente oculta */
+    border: 2px solid #ccc;
+    border-radius: 20px; /* Bordas arredondadas */
+    width: 400px; /* Tamanho da barra de pesquisa */
+    background-color: rgba(243, 154, 209, 0.637);
+}
+
+/* Quando o mouse passa sobre o ícone de pesquisa, exibe a barra de pesquisa */
+.pesquisa:hover .barra-pesquisa {
+    display: block;
+}
+/* ======== SEÇÃO MISSÃO ======== */
+.missao {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.missao img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* ======== SEÇÃO VALORES ======== */
+.valores {
+    padding: 50px 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 40px auto;
+    opacity: 0.9;
+}
+
+.valores h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.valores h3 {
+    font-size: 24px;
+    color: #222;
+    margin-top: 20px;
+}
+
+.valores p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* ======== SEÇÃO HISTÓRIA ======== */
+.historia {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.historia h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.historia p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* ======== SEÇÃO EQUIPE ======== */
+.equipe {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.equipe h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.equipe p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* ======== SEÇÃO DIFERENCIAIS ======== */
+.diferenciais {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.diferenciais h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.diferenciais p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* ======== SEÇÃO PRODUTOS ======== */
+a.produtos {
+    display: inline-block;
+    text-align: center;
+    background: #E8DCC5;
+    border-radius: 110px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 40px auto;
+    margin-left: 550px;
+    width: 244px;
+    height: 33px;
+    border-color: #5170FF;
+    text-decoration: none;
+    
+}
+
+.produtos h4 {
+    font-size: 18px;
+    color: #222;
+    height: 36px;
+    margin-bottom: 20px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    margin-top: 4px;
+
+}
+
+
+a.produtos:hover {
+    background-color: #45a049;
+}
+
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .valores, .historia, .equipe, .diferenciais, .produtos {
+        padding: 30px 10px;
+        max-width: 90%;
+    }
+}

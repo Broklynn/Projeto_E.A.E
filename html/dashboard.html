@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Sensores</title>
+    <link rel="stylesheet" href="/styles\styles_dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="logo" href="index.html">E.A.E</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre a empresa</a></li>
+                <li><a href="informacoes.html">Informações</a></li>
+                <li><a href="blog_Base.html">Blog</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+
+            </ul>
+        </nav>
+        <div class="icones">
+            <a class="pesquisa" href="javascript:void(0);" onclick="toggleSearchBar()">
+                🔍
+                <input type="text" class="barra-pesquisa" placeholder="Pesquisar...">
+            </a>
+            <a class="carrinho" href="carrinho.html">🛒</a>
+            <a class="usuario" href="usuario.html">👤</a>
+        </div>
+      </nav>
+    
+</header>
+
+    <div class="dashboard">
+        <h1>Dashboard de Sensores</h1>
+        <div class="grafico" id="grafico-solo">
+            <h2>Umidade do Solo</h2>
+            <p id="umidade-solo">-- %</p>
+        </div>
+        <div class="grafico" id="grafico-ar">
+            <h2>Umidade do Ar</h2>
+            <p id="umidade-ar">-- %</p>
+        </div>
+        <div class="grafico" id="grafico-agua">
+            <h2>Temperatura da Água</h2>
+            <p id="temperatura-agua">-- °C</p>
+        </div>
+    </div>
+
+
+    <script src="/script/barra-pesquisa.js"></script>
+    <script src="/script/dashboard_sensores.js"></script>
+
+</body>
+</html>
