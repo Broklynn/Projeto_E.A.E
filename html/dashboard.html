@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Sensores</title>
     <link rel="stylesheet" href="/styles\styles_dashboard.css">
+    <script>
+        if (localStorage.getItem('usuarioLogado') !== 'true') {
+          window.location.href = '/login.html';
+        }
+      </script>
+      
 </head>
 <body>
     <header>

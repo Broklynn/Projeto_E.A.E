@@ -4,6 +4,6 @@
     if (localStorage.getItem('usuarioLogado') === 'true') {
       iconeUsuario.href = '/html/dashboard.html';
     } else {
-      iconeUsuario.href = '/usuario.html';
+      iconeUsuario.href = '/html/usuario.html';
     }
   });

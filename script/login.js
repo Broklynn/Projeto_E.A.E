@@ -15,7 +15,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
     if (response.ok) {
       alert('Login realizado com sucesso!');
-      // Redirecionar para a página do usuário ou dashboard, por exemplo:
+      localStorage.setItem('usuarioLogado', 'true');
       window.location.href = '/html/dashboard.html';
     } else {
       alert(resultado.erro || 'Credenciais inválidas');
@@ -29,5 +29,5 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
 function logout() {
   localStorage.removeItem('usuarioLogado');
-  window.location.href = '/index.html';
+  window.location.href = '/html/index.html';
 }
