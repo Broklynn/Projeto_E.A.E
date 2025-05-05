@@ -26,6 +26,14 @@ header {
 .logo {
     font-size: 24px;
     font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+.logo:hover{
+    font-weight: bolder;
+    color: #1c8612;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    opacity: 100%;
 }
 nav ul {
     list-style: none;
@@ -37,36 +45,17 @@ nav ul li {
     margin: 0 15px;
     position: relative;
 }
-nav ul li:hover {
-    background-color: #6bb2ec;
-    border-radius: 10px;
-    opacity: 90%;
-}
 nav ul li a {
     text-decoration: none;
     color: black;
-    font-weight: bold;
-    transition: border 0.3s ease;
+    font-weight: 575;
 }
-.submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: linear-gradient(to right, #4caf50, #FFDE59);
-    border-radius: 10px;
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    z-index: 1001;
-}
-.submenu a {
-    color: white;
-    padding: 5px 10px;
-    text-decoration: none;
-    display: block;
-}
-nav ul li:hover .submenu {
-    display: flex;
+
+nav ul li:hover a {
+    font-weight: 799;
+    color: #1c8612;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    opacity: 100%;
 }
 .icones a {
     margin-left: 10px;
@@ -78,6 +67,13 @@ nav ul li:hover .submenu {
     position: relative;
     text-decoration: none;
     font-size: 24px;
+}
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
 }
 .barra-pesquisa {
     position: absolute;

@@ -38,8 +38,11 @@ app.post('/api/login', async (req, res) => {
     if (result.recordset.length === 0) {
       return res.status(401).json({ erro: 'Usuário ou senha inválidos.' });
     }
-
-    res.status(200).json({ mensagem: 'Login bem-sucedido!' });
+    const usuario = result.recordset[0];
+    res.status(200).json({ 
+      mensagem: 'Login bem-sucedido!', 
+      temporaria: usuario.senha_temporaria === true 
+    });
   } catch (err) {
     console.error('Erro no login:', err);
     res.status(500).json({ erro: 'Erro no servidor durante o login.' });
@@ -54,8 +57,6 @@ app.post('/api/cadastrar', async (req, res) => {
   console.log('Dados recebidos:', { nome, usuario, email, senha, telefone, dataNascimento });
   try {
     const pool = await sql.connect(config);
-
-    // Verificar se o usuário ou email já está cadastrado
     const check = await pool.request()
       .input('usuario', sql.VarChar, usuario)
       .input('email', sql.VarChar, email)
@@ -64,8 +65,6 @@ app.post('/api/cadastrar', async (req, res) => {
     if (check.recordset.length > 0) {
       return res.status(400).json({ erro: 'Usuário ou email já cadastrado.' });
     }
-
-    // Inserir novo usuário no banco
     await pool.request()
       .input('nome', sql.VarChar, nome)
       .input('usuario', sql.VarChar, usuario)
@@ -84,7 +83,61 @@ app.post('/api/cadastrar', async (req, res) => {
     res.status(500).json({ erro: 'Erro no servidor ao cadastrar.' });
   }
 });
+   //* ATUALIZAR SENHA DO BANCO *\\
+app.post('/api/esqueceu-senha', async (req, res) => {
+  const { login } = req.body;
 
+  if (!login) {
+    return res.status(400).json({ erro: 'Login (usuário ou email) é obrigatório.' });
+  }
+
+  try {
+    const pool = await sql.connect(config);
+    const resultado = await pool.request()
+      .input('login', sql.VarChar, login)
+      .query(`SELECT * FROM usuarios WHERE usuario = @login OR email = @login`);
+
+    if (resultado.recordset.length === 0) {
+      return res.status(404).json({ erro: 'Usuário não encontrado.' });
+    }
+    const senhaTemporaria = Math.random().toString(36).slice(-8); // Ex: "x9ab34cd"
+
+    await pool.request()
+      .input('senha', sql.VarChar, senhaTemporaria)
+      .input('login', sql.VarChar, login)
+      .query(`
+        UPDATE usuarios
+        SET senha = @senha, senha_temporaria = 1
+        WHERE usuario = @login OR email = @login
+      `);
+    res.status(200).json({ mensagem: 'Senha temporária gerada com sucesso.', senhaTemporaria });
+  } catch (err) {
+    console.error('Erro ao redefinir senha:', err);
+    res.status(500).json({ erro: 'Erro interno do servidor.' });
+  }
+});
+
+  //*NOVA SENHA*\\
+app.post('/api/nova-senha', async (req, res) => {
+  const { login, novaSenha } = req.body;
+
+  try {
+    const pool = await sql.connect(config);
+    await pool.request()
+      .input('novaSenha', sql.VarChar, novaSenha)
+      .input('login', sql.VarChar, login)
+      .query(`
+        UPDATE usuarios 
+        SET senha = @novaSenha, senha_temporaria = 0 
+        WHERE usuario = @login OR email = @login
+      `);
+
+    res.json({ mensagem: 'Senha atualizada com sucesso!' });
+  } catch (err) {
+    console.error('Erro ao atualizar senha:', err);
+    res.status(500).json({ erro: 'Erro ao atualizar a senha.' });
+  }
+});
 
 
 //* RECEBER DADOS DOS SENSORES *\\
@@ -127,40 +180,40 @@ app.get('/api/sensores/ultimos', async (req, res) => {
 });
 
 //* DICAS DE PLANTIO *\\
-app.get('/api/dicas', async (req, res) => {
-  try {
-    const pool = await sql.connect(config);
-    const result = await pool.request().query('SELECT planta, dica FROM DicasPlantio');
-    res.json(result.recordset);
-  } catch (err) {
-    console.error('Erro ao buscar dicas:', err);
-    res.status(500).json({ erro: 'Erro ao buscar dicas do banco de dados' });
-  }
-});
+//app.get('/api/dicas', async (req, res) => {
+ // try {
+   // const pool = await sql.connect(config);
+   // const result = await pool.request().query('SELECT planta, dica FROM DicasPlantio');
+   // res.json(result.recordset);
+  //} catch (err) {
+    //console.error('Erro ao buscar dicas:', err);
+    //res.status(500).json({ erro: 'Erro ao buscar dicas do banco de dados' });
+  //}
+//});
 
 //* BLOG DA ESTUFA *\\
-app.get('/api/blog-estufa', async (req, res) => {
-  try {
-    const pool = await sql.connect(config);
-    const result = await pool.request().query('SELECT * FROM BlogEstufa ORDER BY Id DESC');
-    res.json(result.recordset);
-  } catch (err) {
-    console.error('Erro ao buscar blog da estufa:', err);
-    res.status(500).json({ erro: 'Erro ao buscar dicas da estufa' });
-  }
-});
+//app.get('/api/blog-estufa', async (req, res) => {
+  //try {
+    //const pool = await sql.connect(config);
+    //const result = await pool.request().query('SELECT * FROM BlogEstufa ORDER BY Id DESC');
+    //res.json(result.recordset);
+  //} catch (err) {
+   // console.error('Erro ao buscar blog da estufa:', err);
+   // res.status(500).json({ erro: 'Erro ao buscar dicas da estufa' });
+ // }
+//});
 
 //* BLOG DE RECEITAS *\\
-app.get('/api/blog-receitas', async (req, res) => {
-  try {
-    const pool = await sql.connect(config);
-    const result = await pool.request().query('SELECT * FROM BlogReceitas ORDER BY Id DESC');
-    res.json(result.recordset);
-  } catch (err) {
-    console.error('Erro ao buscar blog de receitas:', err);
-    res.status(500).json({ erro: 'Erro ao buscar receitas' });
-  }
-});
+//app.get('/api/blog-receitas', async (req, res) => {
+  //try {
+   // const pool = await sql.connect(config);
+   // const result = await pool.request().query('SELECT * FROM BlogReceitas ORDER BY Id DESC');
+   // res.json(result.recordset);
+  //} catch (err) {
+   // console.error('Erro ao buscar blog de receitas:', err);
+   // res.status(500).json({ erro: 'Erro ao buscar receitas' });
+  //}
+//});
 
 //* INICIAR SERVIDOR *\\
 app.listen(3000, () => {

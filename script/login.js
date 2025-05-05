@@ -14,10 +14,15 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const resultado = await response.json();
 
     if (response.ok) {
-      alert('Login realizado com sucesso!');
-      localStorage.setItem('usuarioLogado', 'true');
-      window.location.href = '/html/dashboard.html';
-    } else {
+      if (resultado.temporaria) {
+        localStorage.setItem('usuarioTemporario', login);
+        window.location.href = '/html/nova_senha.html';
+      } else {
+        localStorage.setItem('usuarioLogado', 'true');
+        window.location.href = '/html/dashboard.html';
+      }
+    }
+    else {
       alert(resultado.erro || 'Credenciais inválidas');
     }
   } catch (err) {

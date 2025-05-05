@@ -1,15 +1,18 @@
+/* ===== RESET E BASE ===== */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background:  #C1F0C5;
+    background: #C1F0C5;
     color: #333;
 }
 
+/* ===== HEADER ===== */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     padding: 20px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
@@ -20,80 +23,100 @@ header {
 .logo {
     font-size: 24px;
     font-weight: bold;
+    text-decoration: none;
+    color: black;
 }
-
+.logo:hover{
+    font-weight: bolder;
+    color: #1c8612;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    opacity: 100%;
+}
+/* ===== MENU NAV ===== */
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
+    flex-wrap: wrap;
 }
 
 nav ul li {
     margin: 0 15px;
     position: relative;
-   
 }
 
 nav ul li a {
     text-decoration: none;
     color: black;
-    font-weight:575;
-    
+    font-weight: 575;
 }
 
 nav ul li:hover a {
     font-weight: 799;
-    color: #1c8612; /* Cor ao passar o mouse */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    color: #1c8612;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     opacity: 100%;
 }
+
+/* ===== ÍCONES ===== */
 .icones a {
     margin-left: 10px;
     font-size: 30px;
     cursor: pointer;
     text-decoration: none;
-    /*ícones no canto superior direito da página*/
 }
+
 .pesquisa {
-    position: relative; /* Necessário para o posicionamento do input */
-    text-decoration: none;
+    position: relative;
     font-size: 24px;
 }
 
-/* Estilo da barra de pesquisa (input) */
+/* ===== BARRA DE PESQUISA ===== */
 .barra-pesquisa {
     position: absolute;
-    top: 50%; /* Alinha verticalmente com o ícone */
-    right: 100%; /* Posiciona a barra de pesquisa ao lado esquerdo do ícone */
-    transform: translateY(-50%); /* Centraliza verticalmente o input */
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
     padding: 5px 10px;
     font-size: 16px;
-    display: none; /* Inicialmente oculta */
+    display: none;
     border: 2px solid #ccc;
-    border-radius: 20px; /* Bordas arredondadas */
-    width: 200px; /* Tamanho da barra de pesquisa */
+    border-radius: 20px;
+    width: 200px;
     background-color: white;
 }
 
-/* Quando o mouse passa sobre o ícone de pesquisa, exibe a barra de pesquisa */
 .pesquisa:hover .barra-pesquisa {
     display: block;
 }
-.hero {
+
+/* ===== SEÇÕES HERO E MISSÃO ===== */
+.hero, .missao {
     text-align: center;
     padding: 80px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
     position: relative;
     z-index: 1;
     border-radius: 10px;
 }
 
-.hero img {
+.hero {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.missao {
+    background: rgba(68, 185, 74, 0.445);
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+}
+
+.hero img,
+.missao img {
     max-width: 100%;
     height: auto;
-    border-radius: 50px;
+    border-radius: 30px;
     box-shadow: 0 4px 12px rgba(151, 43, 43, 0.2);
 }
 
@@ -103,32 +126,63 @@ nav ul li:hover a {
     color: black;
 }
 
-.hero p {
+.hero p, .missao p {
     font-size: 18px;
     color: black;
-}
-
-.missao {
-    padding: 50px 20px;
-    text-align: center;
-    background: rgba(68, 185, 74, 0.445);
-    position: relative;
-    z-index: 1;
-    border-radius: 50px;
-    max-width: 800px;
-    margin: 40px auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .missao h2 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: black;
 }
 
-.missao p {
-    font-size: 18px;
-    max-width: 600px;
-    margin: 0 auto;
-    color: black;
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .icones {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    .barra-pesquisa {
+        width: 150px;
+    }
+
+    .hero, .missao {
+        padding: 40px 10px;
+    }
+
+    .missao {
+        max-width: 100%;
+        border-radius: 20px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .missao h2 {
+        font-size: 24px;
+    }
+
+    .hero p, .missao p {
+        font-size: 16px;
+    }
 }

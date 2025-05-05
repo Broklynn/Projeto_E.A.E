@@ -45,26 +45,6 @@ nav ul li a {
     
 }
 
-.submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: linear-gradient(to right,#5170FF, #FF66C4);
-    border-radius: 10px;
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    z-index: 1001;
-}
-.submenu a {
-    color: black;
-    padding: 5px 10px;
-    text-decoration: none;
-    display: block;
-}
-nav ul li:hover .submenu {
-    display: flex;
-}
 .icones a {
     margin-left: 10px;
     font-size: 20px;
@@ -88,8 +68,8 @@ nav ul li:hover .submenu {
     display: none; /* Inicialmente oculta */
     border: 2px solid #ccc;
     border-radius: 20px; /* Bordas arredondadas */
-    width: 400px; /* Tamanho da barra de pesquisa */
-    background-color: rgba(243, 154, 209, 0.637);
+    width: 200px; /* Tamanho da barra de pesquisa */
+    background-color: white;
 }
 
 /* Quando o mouse passa sobre o ícone de pesquisa, exibe a barra de pesquisa */
