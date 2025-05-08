@@ -9,17 +9,19 @@ body {
 
 /* ===== HEADER ===== */
 header {
+    background-color: #C1F0C5;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background: rgba(193, 240, 197, 0.7);
-    backdrop-filter: blur(10px);
-    position: relative;
-    z-index: 1000;
+    border: 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    transition: box-shadow 0.3s ease;
+    z-index: 1000;
 }
 
 .logo {
@@ -34,6 +36,7 @@ header {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     opacity: 100%;
 }
+
 /* ===== MENU NAV ===== */
 nav ul {
     list-style: none;
@@ -64,32 +67,32 @@ nav ul li:hover a {
 /* ===== ÍCONES ===== */
 .icones a {
     margin-left: 10px;
-    font-size: 30px;
-    cursor: pointer;
+    font-size: 20px;
     text-decoration: none;
 }
 
 .pesquisa {
-    position: relative;
+    position: relative; /* Necessário para o posicionamento do input */
+    text-decoration: none;
     font-size: 24px;
 }
 
-/* ===== BARRA DE PESQUISA ===== */
+/* Estilo da barra de pesquisa (input) */
 .barra-pesquisa {
     position: absolute;
-    text-align: center;
-    top: 50%;
-    right: 100%;
-    transform: translateY(-50%);
+    top: 50%; /* Alinha verticalmente com o ícone */
+    right: 100%; /* Posiciona a barra de pesquisa ao lado esquerdo do ícone */
+    transform: translateY(-50%); /* Centraliza verticalmente o input */
     padding: 5px 10px;
     font-size: 16px;
-    display: none;
+    display: none; /* Inicialmente oculta */
     border: 2px solid #ccc;
-    border-radius: 20px;
-    width: 200px;
+    border-radius: 20px; /* Bordas arredondadas */
+    width: 200px; /* Tamanho da barra de pesquisa */
     background-color: white;
 }
 
+/* Quando o mouse passa sobre o ícone de pesquisa, exibe a barra de pesquisa */
 .pesquisa:hover .barra-pesquisa {
     display: block;
 }
@@ -109,31 +112,57 @@ nav ul li:hover a {
 
 .container {
     display: flex;
-    flex-direction:column;
-    gap: 16px; /* espaçamento entre os boxes */
+    flex-direction: column;
+    gap: 40px; /* espaçamento entre os boxes */
     align-items: center; /* centraliza na horizontal */
+    padding-bottom: 40px;
+    padding-top: 40px;
 }
+
+/* ===== BOXES COM ANIMAÇÃO FADE ===== */
 .box {
     border-radius: 10px;
-    font-size:larger;
+    font-size: larger;
     width: 700px;
     height: 400px;
     padding: 16px;
     background-color: #aaffcc;
     display: flex;
-    flex-direction: column;  /* <-- empilha o conteúdo internamente */
+    flex-direction: column; /* <-- empilha o conteúdo internamente */
     align-items: center;
     justify-content: center;
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
 }
-.features {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* duas colunas iguais */
-    gap: 20px 40px; /* espaçamento entre linhas e colunas */
-  }
-  .features p {
-    margin: 0;
-  }
+
+/* Animação do fade */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Atraso para os elementos aparecerem em sequência */
+.box:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.box:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.box:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.box:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+/* ===== IMAGENS HERO E MISSÃO ===== */
 .hero img,
 .missao img {
     max-width: 100%;
@@ -208,6 +237,8 @@ nav ul li:hover a {
         font-size: 16px;
     }
 }
+
+/* ===== FOOTER ===== */
 footer {
     background: #C1F0C5;
     color: black;
@@ -269,4 +300,3 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-top: 10px;
 }
-

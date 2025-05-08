@@ -7,25 +7,29 @@
 }
 
 body {
-    font-family: 'Arial Rounded MT Bold', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
-    background: var(--gradiente-header);
-    color: var(--cor-preta);
+    padding: 0;
+    background: #75F0A8;
+    color: #333;
 }
+
 
 /* --------- HEADER --------- */
 header {
+    background-color: #C1F0C5;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(193, 240, 197, 0.7); /* Cor de fundo com transparência */
-    backdrop-filter: blur(10px);
-    padding: 20px 30px;
-    position: relative;
-    z-index: 1000;
-    flex-wrap: wrap;
-    border-radius: 15px;
+    padding: 20px;
+    border: 1px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    transition: box-shadow 0.3s ease;
+    z-index: 1000;
 }
 
 .logo {
@@ -43,48 +47,42 @@ header {
 
 nav ul {
     list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
     padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 nav ul li {
+    margin: 0 15px;
     position: relative;
 }
 
 nav ul li a {
     text-decoration: none;
     color: black;
-    font-weight:575;
-    
+    font-weight: 575;
 }
 
 nav ul li:hover a {
     font-weight: 799;
-    color: #1c8612; /* Cor ao passar o mouse */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    color: #1c8612;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     opacity: 100%;
 }
-
-nav a {
-    text-decoration: none;
-    color: var(--cor-preta);
-    font-weight: bold;
-}
 .icones a {
-    margin-left: 15px;
-    color: var(--cor-preta);
+    margin-left: 10px;
+    font-size: 20px;
     text-decoration: none;
-    font-size: 22px;
 }
 
-/* --------- BARRA DE PESQUISA --------- */
 .pesquisa {
-    position: relative;
-    font-size: 22px;
+    position: relative; /* Necessário para o posicionamento do input */
+    text-decoration: none;
+    font-size: 24px;
 }
 
+/* Estilo da barra de pesquisa (input) */
 .barra-pesquisa {
     position: absolute;
     top: 50%; /* Alinha verticalmente com o ícone */
@@ -99,6 +97,7 @@ nav a {
     background-color: white;
 }
 
+/* Quando o mouse passa sobre o ícone de pesquisa, exibe a barra de pesquisa */
 .pesquisa:hover .barra-pesquisa {
     display: block;
 }
