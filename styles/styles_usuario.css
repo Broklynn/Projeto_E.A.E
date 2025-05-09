@@ -146,6 +146,20 @@ nav ul li:hover a {
 .login-button:hover {
     background-color: #038056;
 }
+.voltar-link {
+    display: block;
+    margin-top: 15px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.voltar-link:hover {
+    text-decoration: underline;
+    color: #02553d;
+}
+
 
 /* Links abaixo do formulário */
 .links {
@@ -155,13 +169,14 @@ nav ul li:hover a {
 
 .links a {
     color: black;
+    font-weight: bold;
     text-decoration: none;
 }
 
 .links a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: #02553d;
 }
-
 /* Estilo do rodapé */
 footer {
     background: #C1F0C5;

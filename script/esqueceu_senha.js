@@ -11,7 +11,11 @@ document.getElementById('recuperarForm').addEventListener('submit', async functi
       });
   
       const resultado = await response.json();
-      document.getElementById('mensagem').textContent = resultado.mensagem || resultado.erro;
+      document.getElementById('mensagem').textContent = 
+      resultado.senhaTemporaria
+      ? `Senha temporária: ${resultado.senhaTemporaria}`
+      : resultado.erro || resultado.mensagem;
+
   
     } catch (err) {
       console.error(err);

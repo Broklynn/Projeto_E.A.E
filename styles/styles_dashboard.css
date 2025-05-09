@@ -162,6 +162,25 @@ p {
     border: 10px solid #444;
     border-top-color: #f1c40f;
 }
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        background-color: #C3C3EB;
+    }
+    50% {
+        transform: scale(1.05);
+        background-color: #a3a3ff;
+    }
+    100% {
+        transform: scale(1);
+        background-color: #C3C3EB;
+    }
+}
+.grafico.animate {
+    animation: pulse 0.6s ease-in-out;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
 footer {
     background: #C1F0C5;
     color: black;

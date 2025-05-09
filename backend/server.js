@@ -2,8 +2,10 @@ const express = require('express');
 const sql = require('mssql');
 const cors = require('cors');
 const path = require('path');
+const session = require('express-session');
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../')));
@@ -141,7 +143,7 @@ app.post('/api/nova-senha', async (req, res) => {
 
 
 //* RECEBER DADOS DOS SENSORES *\\
-app.post('/api/sensores', async (req, res) => {
+/*app.post('/api/sensores', async (req, res) => {
   const { umidade_solo, umidade_ar, temperatura_agua } = req.body;
 
   try {
@@ -159,10 +161,10 @@ app.post('/api/sensores', async (req, res) => {
     console.error('Erro ao inserir dados:', err);
     res.status(500).json({ erro: 'Erro ao inserir dados no banco' });
   }
-});
+});*/
 
 //* BUSCAR ÚLTIMOS DADOS DOS SENSORES *\\
-app.get('/api/sensores/ultimos', async (req, res) => {
+/*app.get('/api/sensores/ultimos', async (req, res) => {
   try {
     const pool = await sql.connect(config);
     const result = await pool.request()
@@ -177,7 +179,7 @@ app.get('/api/sensores/ultimos', async (req, res) => {
     console.error('Erro ao buscar últimos dados:', err);
     res.status(500).json({ erro: 'Erro ao buscar dados dos sensores' });
   }
-});
+});*/
 
 //* DICAS DE PLANTIO *\\
 //app.get('/api/dicas', async (req, res) => {

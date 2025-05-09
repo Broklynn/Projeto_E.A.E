@@ -14,15 +14,15 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const resultado = await response.json();
 
     if (response.ok) {
+      localStorage.setItem('usuarioLogado', 'true');
+      localStorage.setItem('usuarioNome', login);
+
       if (resultado.temporaria) {
-        localStorage.setItem('usuarioTemporario', login);
         window.location.href = '/html/nova_senha.html';
       } else {
-        localStorage.setItem('usuarioLogado', 'true');
         window.location.href = '/html/dashboard.html';
       }
-    }
-    else {
+    } else {
       alert(resultado.erro || 'Credenciais inválidas');
     }
   } catch (err) {
@@ -31,8 +31,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
   }
 });
 
-
 function logout() {
-  localStorage.removeItem('usuarioLogado');
+  localStorage.clear();
   window.location.href = '/html/index.html';
 }

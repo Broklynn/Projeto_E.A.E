@@ -24,7 +24,7 @@
                 <input type="text" class="barra-pesquisa" placeholder="Pesquisar...">
             </a>
             <a class="carrinho" href="carrinho.html">🛒</a>
-            <a class="usuario" href="usuario.html">👤</a>
+            <a class="usuario" href="javascript:void(0);" id="login-btn">👤</a>
         </div>
     </header>
 
@@ -41,7 +41,7 @@
               <input type="date" class="input-box" placeholder="Data de nascimento" id="dataNascimento">
 
               <label>
-                  <input type="checkbox" id="aceitoTermos" required>
+                  <input type="checkbox" id="aceitoTermos" class="aceitoTermos" required>
                   Eu aceito os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>.
               </label>
 
@@ -49,7 +49,7 @@
           </form>
 
           <div class="links">
-              <a href="usuario.html">Já tem uma conta? Faça login</a>
+              <a href="usuario.html" class="aceitoTermos">Já tem uma conta? Faça login</a>
           </div>
       </div>
   </main>
@@ -85,5 +85,6 @@
 </footer>
   <script src="/script/cadastro.js"></script>
   <script src="/script/barra_pesquisa.js"></script>
+  <script src="/script/rota_global.js"></script>
 </body>
 </html>
