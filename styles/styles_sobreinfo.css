@@ -145,10 +145,9 @@ footer {
     transition: color 0.3s;
 }
 
-.footer-content ul li a:hover {
-    color: #ffeb3b;
+.redes-sociais a:hover {
+    color: #1c8612;
 }
-
 .redes-sociais a {
     margin-right: 10px;
     text-decoration: none;
@@ -156,8 +155,9 @@ footer {
     transition: color 0.3s;
 }
 
-.redes-sociais a:hover {
-    color: #ffeb3b;
+.footer-content ul li a:hover {
+    color: #1c8612;
+    font-weight: bold;
 }
 
 .footer-bottom {

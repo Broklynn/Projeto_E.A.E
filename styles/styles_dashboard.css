@@ -1,12 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #C3CFEA;
-    color: black;
-    text-align: center;
     margin: 0;
     padding: 0;
-
+    background: #75F0A8;
+    color: #333;
 }
+
 /*body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -16,13 +15,18 @@ body {
 }*/
 
 header {
+    background-color: #C1F0C5;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    border: 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     backdrop-filter: blur(10px);
     position: relative;
+    transition: box-shadow 0.3s ease;
     z-index: 1000;
 }
 .logo {
@@ -120,14 +124,14 @@ h1, h2 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    background-color: #C3CFEA;
+    background-color: #75F0A8;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
 
 .grafico {
-    background-color: #C3C3EB;
+    background-color: #C1F0C5;
     padding: 20px;
     border-radius: 10px;
     width: 200px;
@@ -165,22 +169,39 @@ p {
 @keyframes pulse {
     0% {
         transform: scale(1);
-        background-color: #C3C3EB;
+        background-color: #C1F0C5;
     }
     50% {
         transform: scale(1.05);
-        background-color: #a3a3ff;
+        background-color: #C1F0C5;
     }
     100% {
         transform: scale(1);
-        background-color: #C3C3EB;
+        background-color: #C1F0C5;
     }
 }
 .grafico.animate {
     animation: pulse 0.6s ease-in-out;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 1s, transform 0.1s;
 }
 
+.logoutBtn{
+ 
+       margin-left: 47.73%;
+        padding: 15px;
+        background-color: #C1F0C5;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    
+
+}
+.logoutBtn:hover {
+    background-color: #038056;
+}
 footer {
     background: #C1F0C5;
     color: black;
@@ -233,8 +254,9 @@ footer {
 }
 
 .redes-sociais a:hover {
-    color: #ffeb3b;
+    color: #1c8612;
 }
+
 
 .footer-bottom {
     text-align: center;

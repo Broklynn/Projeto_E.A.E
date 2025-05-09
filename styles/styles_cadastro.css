@@ -219,7 +219,8 @@ footer {
 }
 
 .footer-content ul li a:hover {
-    color: #ffeb3b;
+    color: #1c8612;
+    font-weight: bold;
 }
 
 .redes-sociais a {
@@ -230,8 +231,9 @@ footer {
 }
 
 .redes-sociais a:hover {
-    color: #ffeb3b;
+    color: #1c8612;
 }
+
 
 .footer-bottom {
     text-align: center;

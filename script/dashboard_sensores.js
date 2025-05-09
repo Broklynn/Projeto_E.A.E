@@ -1,6 +1,6 @@
 
 if (localStorage.getItem('usuarioLogado') !== 'true') {
-    window.location.href = '/usuario.html';
+    window.location.href = 'usuario.html';
   }
 async function atualizarSensores() {
     try {
