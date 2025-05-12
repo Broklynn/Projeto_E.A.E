@@ -80,13 +80,29 @@
         <li><strong>Cuidados:</strong> Remova folhas secas e adube com matéria orgânica a cada 15 dias.</li>
       </ol>
       <div class="footer-icons">
-        <span>💬</span>
-        <span>❤</span>
-        <span>🔁</span>
+        <span id="comentario-icon">💬</span>
+        <span id="curtir-icon">❤️</span>
+        <span id="compartilhar-icon">🔁</span>
       </div>
+      <div id="comentario-box" class="comentario-popup">
+  <div class="popup-header">
+    <strong>Comentar</strong>
+    <button id="fechar-chat">✖</button>
+  </div>
+  <textarea placeholder="Escreva algo..."></textarea>
+  <button class="enviar-btn" onclick="enviarComentario()">Enviar</button>
+</div>
+  <button onclick="alternarComentarios()">Mostrar Comentários</button>
+  <div id="lista-comentarios" style="display: none;">
+    <ul id="comentarios-ul"></ul>
+</div>
+
+
     </section>
   </main>
+  <script src="/script/chat.js"></script>
   <script src="/script/rota_global.js"></script>
+  <script src="/script/comentarios.js"></script>
 </body>
 <footer>
   <div class="footer-content">

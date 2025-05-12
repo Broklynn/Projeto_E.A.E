@@ -52,6 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     requestAnimationFrame(update);
   }
+  function atualizarProgresso(id, valor) {
+    const circle = document.getElementById(id);
+    const raio = 40;
+    const circunferencia = 2 * Math.PI * raio;
+    const porcentagem = Math.min(Math.max(valor, 0), 100);
+    const offset = circunferencia - (porcentagem / 100) * circunferencia;
+
+    if (circle) {
+      circle.style.strokeDashoffset = offset;
+    }
+  }
+
 
   function atualizarDashboard() {
     const novoSolo = gerarValor(20, 80);
@@ -61,6 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     animateValue(umidadeSolo, atual.solo, novoSolo, '%');
     animateValue(umidadeAr, atual.ar, novoAr, '%');
     animateValue(temperaturaAgua, atual.agua, novaTemp, 'ºC');
+    atualizarProgresso('progress-solo', novoSolo);
+    atualizarProgresso('progress-ar', novoAr);
+    atualizarProgresso('progress-agua', novaTemp);
+
 
     aplicarAnimacao(umidadeSolo);
     aplicarAnimacao(umidadeAr);

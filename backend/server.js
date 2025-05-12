@@ -140,7 +140,47 @@ app.post('/api/nova-senha', async (req, res) => {
     res.status(500).json({ erro: 'Erro ao atualizar a senha.' });
   }
 });
+            //*COMENTARIOS*\\
+app.post('/api/comentarios', async (req, res) => {
+  const { texto, usuarioId } = req.body;
 
+  if (!texto || !usuarioId) {
+    return res.status(400).json({ erro: 'Texto e usuárioId são obrigatórios.' });
+  }
+
+  try {
+    const pool = await sql.connect(config);
+    await pool.request()
+      .input('texto', sql.NVarChar, texto)
+      .input('usuarioId', sql.Int, usuarioId)
+      .query(`
+        INSERT INTO comentarios (texto, usuario_id)
+        VALUES (@texto, @usuarioId)
+      `);
+
+    res.status(201).json({ mensagem: 'Comentário salvo com sucesso!' });
+  } catch (err) {
+    console.error('Erro ao salvar comentário:', err);
+    res.status(500).json({ erro: 'Erro ao salvar comentário.' });
+  }
+});
+app.get('/api/comentarios', async (req, res) => {
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request()
+      .query(`
+        SELECT c.id, c.texto, c.data, u.nome
+        FROM comentarios c
+        JOIN usuarios u ON c.usuario_id = u.id
+        ORDER BY c.data DESC
+      `);
+
+    res.json(result.recordset);
+  } catch (err) {
+    console.error('Erro ao buscar comentários:', err);
+    res.status(500).json({ erro: 'Erro ao buscar comentários.' });
+  }
+});
 
 //* RECEBER DADOS DOS SENSORES *\\
 /*app.post('/api/sensores', async (req, res) => {
