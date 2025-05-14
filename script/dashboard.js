@@ -1,27 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const logado = localStorage.getItem('usuarioLogado');
-    if (logado !== 'true') {
+  const logado = localStorage.getItem('usuarioLogado');
+  if (logado !== 'true') {
+    window.location.href = '/html/usuario.html';
+    return;
+  }
+
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      localStorage.clear();
       window.location.href = '/html/usuario.html';
-      return;
-    }
-  
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        localStorage.clear();
-        window.location.href = '/html/usuario.html';
-      });
-    }
-  
-    function gerarDados() {
-      const umidadeSolo = Math.floor(Math.random() * 101);
-      const umidadeAr = Math.floor(Math.random() * 101);
-      const temperaturaAgua = (Math.random() * 30 + 10).toFixed(2);
-  
-      atualizarDashboard(umidadeSolo, umidadeAr, parseFloat(temperaturaAgua));
-    }
-  
-    const umidadeSolo = document.getElementById('umidade-solo');
+    });
+  }
+
+  const umidadeSolo = document.getElementById('umidade-solo');
   const umidadeAr = document.getElementById('umidade-ar');
   const temperaturaAgua = document.getElementById('temperatura-agua');
   let atual = {
@@ -29,10 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ar: 0,
     agua: 0,
   };
-
-  function gerarValor(min, max) {
-    return parseFloat((Math.random() * (max - min) + min).toFixed(2));
-  }
 
   function animateValue(element, start, end, suffix = '', duration = 1000) {
     const startTime = performance.now();
@@ -52,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     requestAnimationFrame(update);
   }
+
   function atualizarProgresso(id, valor) {
     const circle = document.getElementById(id);
     const raio = 40;
@@ -64,29 +53,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  async function atualizarDashboard() {
+    try {
+      const response = await fetch('http://localhost:3000/api/sensores/ultimos');
+      if (!response.ok) {
+        throw new Error('Erro ao buscar dados dos sensores');
+      }
+      const dados = await response.json();
 
-  function atualizarDashboard() {
-    const novoSolo = gerarValor(20, 80);
-    const novoAr = gerarValor(30, 70);
-    const novaTemp = gerarValor(18, 35);
+      const novoSolo = dados.umidade_solo;
+      const novoAr = dados.umidade_ar;
+      const novaTemp = dados.temperatura_agua;
 
-    animateValue(umidadeSolo, atual.solo, novoSolo, '%');
-    animateValue(umidadeAr, atual.ar, novoAr, '%');
-    animateValue(temperaturaAgua, atual.agua, novaTemp, 'ºC');
-    atualizarProgresso('progress-solo', novoSolo);
-    atualizarProgresso('progress-ar', novoAr);
-    atualizarProgresso('progress-agua', novaTemp);
+      animateValue(umidadeSolo, atual.solo, novoSolo, '%');
+      animateValue(umidadeAr, atual.ar, novoAr, '%');
+      animateValue(temperaturaAgua, atual.agua, novaTemp, 'ºC');
+      atualizarProgresso('progress-solo', novoSolo);
+      atualizarProgresso('progress-ar', novoAr);
+      atualizarProgresso('progress-agua', novaTemp);
 
+      aplicarAnimacao(umidadeSolo);
+      aplicarAnimacao(umidadeAr);
+      aplicarAnimacao(temperaturaAgua);
 
-    aplicarAnimacao(umidadeSolo);
-    aplicarAnimacao(umidadeAr);
-    aplicarAnimacao(temperaturaAgua);
-
-    atual = {
-      solo: novoSolo,
-      ar: novoAr,
-      agua: novaTemp,
-    };
+      atual = {
+        solo: novoSolo,
+        ar: novoAr,
+        agua: novaTemp,
+      };
+    } catch (error) {
+      console.error('Erro ao atualizar dados:', error);
+    }
   }
 
   function aplicarAnimacao(elemento) {
@@ -97,8 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  
   atualizarDashboard();
   setInterval(atualizarDashboard, 5000);
-  });
-  
+});

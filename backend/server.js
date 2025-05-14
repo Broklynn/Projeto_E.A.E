@@ -3,9 +3,9 @@ const sql = require('mssql');
 const cors = require('cors');
 const path = require('path');
 const session = require('express-session');
+const fetch = require('node-fetch');
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../')));
@@ -182,11 +182,17 @@ app.get('/api/comentarios', async (req, res) => {
   }
 });
 
-//* RECEBER DADOS DOS SENSORES *\\
-/*app.post('/api/sensores', async (req, res) => {
-  const { umidade_solo, umidade_ar, temperatura_agua } = req.body;
-
+app.get('/api/importar-sensores', async (req, res) => {
   try {
+    const response = await fetch('http://184.120.25.7/dados');
+
+    if (!response.ok) {
+      throw new Error(`Erro na resposta do ESP: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    const { umidade_solo, umidade_ar, temperatura_agua } = data;
+
     const pool = await sql.connect(config);
     await pool.request()
       .input('umidade_solo', sql.Float, umidade_solo)
@@ -196,15 +202,16 @@ app.get('/api/comentarios', async (req, res) => {
         INSERT INTO sensores (umidade_solo, umidade_ar, temperatura_agua, data_hora)
         VALUES (@umidade_solo, @umidade_ar, @temperatura_agua, GETDATE())
       `);
-    res.json({ sucesso: true, mensagem: 'Dados inseridos com sucesso!' });
-  } catch (err) {
-    console.error('Erro ao inserir dados:', err);
-    res.status(500).json({ erro: 'Erro ao inserir dados no banco' });
+
+    res.json({ sucesso: true, mensagem: 'Dados importados com sucesso!' });
+  } catch (erro) {
+    console.error('Erro ao importar dados:', erro);
+    res.status(500).json({ erro: 'Erro ao importar ou salvar os dados.' });
   }
-});*/
+});
 
 //* BUSCAR ÚLTIMOS DADOS DOS SENSORES *\\
-/*app.get('/api/sensores/ultimos', async (req, res) => {
+app.get('/api/sensores/ultimos', async (req, res) => {
   try {
     const pool = await sql.connect(config);
     const result = await pool.request()
@@ -219,7 +226,7 @@ app.get('/api/comentarios', async (req, res) => {
     console.error('Erro ao buscar últimos dados:', err);
     res.status(500).json({ erro: 'Erro ao buscar dados dos sensores' });
   }
-});*/
+});
 
 //* DICAS DE PLANTIO *\\
 //app.get('/api/dicas', async (req, res) => {
