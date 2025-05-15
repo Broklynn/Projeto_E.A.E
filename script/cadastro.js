@@ -35,3 +35,4 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
     console.error(err);
   }
 });
+184

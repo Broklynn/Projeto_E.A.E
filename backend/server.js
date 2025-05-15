@@ -3,9 +3,10 @@ const sql = require('mssql');
 const cors = require('cors');
 const path = require('path');
 const session = require('express-session');
-const fetch = require('node-fetch');
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../')));
@@ -182,22 +183,22 @@ app.get('/api/comentarios', async (req, res) => {
   }
 });
 
-app.get('/api/importar-sensores', async (req, res) => {
+/*app.get('/api/importar-sensores', async (req, res) => {
   try {
-    const response = await fetch('http://184.120.25.7/dados');
+    const response = await fetch('http://184.120.25.6/dados');
 
     if (!response.ok) {
       throw new Error(`Erro na resposta do ESP: ${response.statusText}`);
     }
 
     const data = await response.json();
-    const { umidade_solo, umidade_ar, temperatura_agua } = data;
+    const { umidade, status, temperatura } = data;
 
     const pool = await sql.connect(config);
     await pool.request()
-      .input('umidade_solo', sql.Float, umidade_solo)
-      .input('umidade_ar', sql.Float, umidade_ar)
-      .input('temperatura_agua', sql.Float, temperatura_agua)
+      .input('umidade_solo', sql.Float, umidade)
+      .input('umidade_ar', sql.Float, status)
+      .input('temperatura_agua', sql.Float, temperatura)
       .query(`
         INSERT INTO sensores (umidade_solo, umidade_ar, temperatura_agua, data_hora)
         VALUES (@umidade_solo, @umidade_ar, @temperatura_agua, GETDATE())
@@ -209,6 +210,7 @@ app.get('/api/importar-sensores', async (req, res) => {
     res.status(500).json({ erro: 'Erro ao importar ou salvar os dados.' });
   }
 });
+
 
 //* BUSCAR ÚLTIMOS DADOS DOS SENSORES *\\
 app.get('/api/sensores/ultimos', async (req, res) => {
@@ -227,6 +229,60 @@ app.get('/api/sensores/ultimos', async (req, res) => {
     res.status(500).json({ erro: 'Erro ao buscar dados dos sensores' });
   }
 });
+app.post('/dados', async (req, res) => {
+  const { temperatura, umidade, status } = req.body; // Desestruturar os dados recebidos
+
+  try {
+    // Conectar ao banco de dados SQL Server
+    await sql.connect(sqlConfig);
+
+    // Inserir os dados na tabela sensores
+    const query = `
+      INSERT INTO sensores (umidade_solo, umidade_ar, temperatura_agua, data_hora)
+      VALUES (@umidade, NULL, @temperatura, GETDATE())
+    `;
+
+    // Executar a consulta com os parâmetros vindos do Arduino
+    await sql.query(query, { 
+      umidade: umidade, 
+      temperatura: temperatura 
+    });
+
+    // Responder que os dados foram inseridos com sucesso
+    res.status(200).send({ message: 'Dados recebidos e armazenados com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao inserir dados no banco:', error);
+    res.status(500).send({ message: 'Erro ao armazenar os dados.' });
+  } finally {
+    // Fechar a conexão com o banco de dados
+    sql.close();
+  }
+});
+
+
+setInterval(async () => {
+  try {
+    const response = await fetch('http://184.120.25.6/dados');
+    const data = await response.json();
+
+    const { umidade, status, temperatura } = data;
+    const pool = await sql.connect(config);
+    await pool.request()
+      .input('umidade_solo', sql.Float, umidade)
+      .input('umidade_ar', sql.Float, status)
+      .input('temperatura_agua', sql.Float, temperatura)
+      .query(`
+        INSERT INTO sensores (umidade_solo, umidade_ar, temperatura_agua, data_hora)
+        VALUES (@umidade_solo, @umidade_ar, @temperatura_agua, GETDATE())
+      `);
+
+    console.log("✔️ Dados importados automaticamente do ESP");
+  } catch (erro) {
+    console.error("❌ Erro na importação automática:", erro.message);
+  }
+}, 30000); // a cada 30 segundos
+
+*/
 
 //* DICAS DE PLANTIO *\\
 //app.get('/api/dicas', async (req, res) => {
